@@ -1,0 +1,51 @@
+<style>
+    html{
+        background-color:rgb(133, 125, 116);
+    }
+    button{
+        background-color: #504B38;
+        color: rgb(255, 255, 255);
+        
+
+    }
+    #input{
+        background-color: #B9B28A;
+        color: black;
+        font-size: 50px;
+
+    }
+</style>
+<input id="input" placeholder="Enter what to do">
+<button onclick="add()">add</button>
+<ul id="list">
+    <li>
+        <button onclick="deleteitem(event)">Delete</button>
+    </li>
+
+</ul>
+
+<script>
+    var ul=document.getElementById("list")
+    var input=document.getElementById("input")
+    function add()
+    {
+        var listitem=document.createElement("li")
+        listitem.innerHTML=input.value +"<button onclick='deleteitem(event)'>Delete</button>"
+        ul.append(listitem)
+    }
+    function deleteitem(event){
+        event.target.parentElement.remove()
+
+    }
+    var todos = JSON.parse(localStorage.getItem("ToDo")) || [];
+
+function add() {
+    var listitem = document.createElement("li");
+    listitem.innerHTML = input.value + "<button onclick='deleteitem(event)'>Delete</button>";
+    ul.append(listitem);
+
+    todos.push(input.value);
+    localStorage.setItem("ToDo", JSON.stringify(todos));
+}
+    
+</script>
